@@ -7,23 +7,15 @@ import { DEVICES, DEFAULT_DEVICE } from "../../devices";
 import { THEMES, DEFAULT_THEME } from "../../themes";
 import type { ScreenshotConfig, ScreenshotDef } from "../../utils/config";
 
-// Import app-specific screen components.
-// These are symlinked from the target app's store-assets/screens/ directory.
-import { HeroScreen } from "../../app-screens/HeroScreen";
-import { ChatScreen } from "../../app-screens/ChatScreen";
-import { SkillsScreen } from "../../app-screens/SkillsScreen";
-import { SessionsScreen } from "../../app-screens/SessionsScreen";
-import { ToolsScreen } from "../../app-screens/ToolsScreen";
-import { ThemesScreen } from "../../app-screens/ThemesScreen";
-
-const SCREEN_MAP: Record<string, React.ComponentType<{ width: number; height: number }>> = {
-  hero: HeroScreen,
-  chat: ChatScreen,
-  skills: SkillsScreen,
-  sessions: SessionsScreen,
-  tools: ToolsScreen,
-  themes: ThemesScreen,
-};
+/**
+ * Render page for store-craft engine.
+ *
+ * Loads a real simulator screenshot PNG from the `screen` field in config,
+ * and composites it inside a device frame with text overlay and background.
+ *
+ * The `screen` field must be an absolute path to a PNG file captured from
+ * the iOS Simulator (via XcodeBuildMCP, xcrun simctl, or XCUITest).
+ */
 
 function RenderContent() {
   const params = useSearchParams();
@@ -68,8 +60,10 @@ function RenderContent() {
   const themeId = screenshot.theme || config.theme || "ocean";
   const theme = THEMES[themeId] || DEFAULT_THEME;
 
-  // Resolve screen component from SCREEN_MAP
-  const ScreenComponent = SCREEN_MAP[screenshot.id];
+  // Resolve the screen image path.
+  // The `screen` field is a path to a real simulator screenshot PNG.
+  // It can be absolute, or relative to the config file's directory.
+  const screenImageUrl = `/api/image?path=${encodeURIComponent(screenshot.screen)}`;
 
   return (
     <ScreenshotLayout
@@ -79,52 +73,18 @@ function RenderContent() {
       subtext={screenshot.subtext}
       textPosition={screenshot.textPosition}
     >
-      {ScreenComponent ? (
-        <ScreenComponent
-          width={device.frame.width}
-          height={device.frame.height}
-        />
-      ) : (
-        <AppScreenPlaceholder
-          screenId={screenshot.id}
-          device={device}
-          appName={config.app.name}
-        />
-      )}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={screenImageUrl}
+        alt={screenshot.id}
+        style={{
+          width: device.frame.width,
+          height: device.frame.height,
+          objectFit: "cover",
+          display: "block",
+        }}
+      />
     </ScreenshotLayout>
-  );
-}
-
-function AppScreenPlaceholder({
-  screenId,
-  device,
-  appName,
-}: {
-  screenId: string;
-  device: typeof DEFAULT_DEVICE;
-  appName: string;
-}) {
-  return (
-    <div
-      style={{
-        width: device.frame.width,
-        height: device.frame.height,
-        background: "linear-gradient(180deg, #1a1a2e 0%, #16213e 100%)",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        fontFamily: "'Hiragino Sans', sans-serif",
-        color: "#fff",
-        gap: 20,
-      }}
-    >
-      <div style={{ fontSize: 48, fontWeight: 700 }}>{appName}</div>
-      <div style={{ fontSize: 32, opacity: 0.5 }}>Screen: {screenId}</div>
-      <div style={{ fontSize: 24, opacity: 0.3 }}>
-        Component not found in SCREEN_MAP
-      </div>
-    </div>
   );
 }
 

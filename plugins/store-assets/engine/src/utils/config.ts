@@ -35,7 +35,7 @@ export interface ScreenshotDef {
   subtext?: string;
   /** Text position */
   textPosition?: "top" | "bottom";
-  /** Path to the app screen component or image */
+  /** Absolute path to a real simulator screenshot PNG */
   screen: string;
   /** Optional per-screenshot theme override */
   theme?: string;
