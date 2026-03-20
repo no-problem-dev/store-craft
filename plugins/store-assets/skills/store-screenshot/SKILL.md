@@ -1,13 +1,6 @@
 ---
-title: "App Store スクリーンショット生成"
-created: 2026-03-20
-version: 2.0.0
-tools: [Read, Write, Edit, Bash, Grep, Glob, Agent, WebSearch]
-tags: [skill, app-store, screenshot, aso, marketing]
-status: active
-type: skill
-user_invocable: true
-trigger: ["/store-screenshot", "ストアスクリーンショット"]
+name: store-screenshot
+description: iOS アプリの App Store 用スクリーンショットを実シミュレータキャプチャとデバイスフレーム合成で自動生成する。「ストアスクリーンショット」「/store-screenshot」などで自動適用。
 ---
 
 # App Store スクリーンショット生成

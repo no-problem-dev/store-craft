@@ -1,13 +1,6 @@
 ---
-title: "App Store アイコン生成"
-created: 2026-03-20
-version: 1.0.0
-tools: [Read, Write, Edit, Bash, Grep, Glob, WebSearch]
-tags: [skill, app-store, icon, design]
-status: active
-type: skill
-user_invocable: true
-trigger: ["/store-icon", "ストアアイコン"]
+name: store-icon
+description: App Store アイコンを SVG 設計から 1024x1024 PNG に変換して生成する。Apple HIG 準拠。「ストアアイコン」「/store-icon」などで自動適用。
 ---
 
 # App Store アイコン生成

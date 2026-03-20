@@ -1,13 +1,6 @@
 ---
-title: "ASO 改善サイクル実行"
-created: 2026-03-20
-version: 1.0.0
-tools: [Read, Write, Edit, Bash, Grep, Glob, Agent]
-tags: [skill, app-store, aso, optimization, improvement]
-status: active
-type: skill
-user_invocable: true
-trigger: ["/store-optimize", "ストア最適化", "ASO最適化"]
+name: store-optimize
+description: ASO 評価結果に基づきスクリーンショットのコピーとメタデータを CVR インパクト順に改善し Before/After 比較レポートを出力する。「ストア最適化」「ASO最適化」「/store-optimize」などで自動適用。
 ---
 
 # ASO 改善サイクル実行

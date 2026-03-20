@@ -1,13 +1,6 @@
 ---
-title: "メタデータ最適化生成"
-created: 2026-03-20
-version: 1.0.0
-tools: [Read, Write, Edit, Bash, Grep, Glob, Agent, WebSearch, WebFetch]
-tags: [skill, app-store, aso, metadata, copywriting]
-status: active
-type: skill
-user_invocable: true
-trigger: ["/store-metadata", "ストアメタデータ", "ASO メタデータ"]
+name: store-metadata
+description: App Store メタデータ（タイトル・サブタイトル・キーワード・説明文）を日本語 ASO 原則に基づいて最適化生成し fastlane/metadata/ に出力する。「ストアメタデータ」「ASO メタデータ」「/store-metadata」などで自動適用。
 ---
 
 # メタデータ最適化生成

@@ -1,13 +1,6 @@
 ---
-title: "ASO 品質評価"
-created: 2026-03-20
-version: 1.0.0
-tools: [Read, Write, Bash, Grep, Glob, Agent, WebSearch, WebFetch]
-tags: [skill, app-store, aso, evaluation, quality]
-status: active
-type: skill
-user_invocable: true
-trigger: ["/store-evaluate", "ストア評価", "ASO評価"]
+name: store-evaluate
+description: App Store アセットの ASO 品質を LLM-as-Judge 方式で 5 軸定量評価する。スクリーンショット・メタデータ・Apple ガイドライン準拠を 100 点満点で採点し改善提案を出力。「ストア評価」「ASO評価」「/store-evaluate」などで自動適用。
 ---
 
 # ASO 品質評価

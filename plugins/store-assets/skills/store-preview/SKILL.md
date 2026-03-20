@@ -1,13 +1,6 @@
 ---
-title: "スクリーンショットプレビュー"
-created: 2026-03-20
-version: 1.0.0
-tools: [Read, Bash]
-tags: [skill, app-store, preview]
-status: active
-type: skill
-user_invocable: true
-trigger: ["/store-preview", "ストアプレビュー"]
+name: store-preview
+description: store-craft エンジンの開発サーバーを起動しブラウザでスクリーンショットをプレビューする。「ストアプレビュー」「/store-preview」などで自動適用。
 ---
 
 # スクリーンショットプレビュー
