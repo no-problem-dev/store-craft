@@ -7,6 +7,24 @@ import { DEVICES, DEFAULT_DEVICE } from "../../devices";
 import { THEMES, DEFAULT_THEME } from "../../themes";
 import type { ScreenshotConfig, ScreenshotDef } from "../../utils/config";
 
+// Import app-specific screen components.
+// These are symlinked from the target app's store-assets/screens/ directory.
+import { HeroScreen } from "../../app-screens/HeroScreen";
+import { ChatScreen } from "../../app-screens/ChatScreen";
+import { SkillsScreen } from "../../app-screens/SkillsScreen";
+import { SessionsScreen } from "../../app-screens/SessionsScreen";
+import { ToolsScreen } from "../../app-screens/ToolsScreen";
+import { ThemesScreen } from "../../app-screens/ThemesScreen";
+
+const SCREEN_MAP: Record<string, React.ComponentType<{ width: number; height: number }>> = {
+  hero: HeroScreen,
+  chat: ChatScreen,
+  skills: SkillsScreen,
+  sessions: SessionsScreen,
+  tools: ToolsScreen,
+  themes: ThemesScreen,
+};
+
 function RenderContent() {
   const params = useSearchParams();
   const configPath = params.get("config");
@@ -50,6 +68,9 @@ function RenderContent() {
   const themeId = screenshot.theme || config.theme || "ocean";
   const theme = THEMES[themeId] || DEFAULT_THEME;
 
+  // Resolve screen component from SCREEN_MAP
+  const ScreenComponent = SCREEN_MAP[screenshot.id];
+
   return (
     <ScreenshotLayout
       device={device}
@@ -58,13 +79,18 @@ function RenderContent() {
       subtext={screenshot.subtext}
       textPosition={screenshot.textPosition}
     >
-      {/* App screen placeholder — the screenshot-designer agent generates
-          actual screen components per app. For now, render a styled placeholder. */}
-      <AppScreenPlaceholder
-        screenId={screenshot.screen}
-        device={device}
-        appName={config.app.name}
-      />
+      {ScreenComponent ? (
+        <ScreenComponent
+          width={device.frame.width}
+          height={device.frame.height}
+        />
+      ) : (
+        <AppScreenPlaceholder
+          screenId={screenshot.id}
+          device={device}
+          appName={config.app.name}
+        />
+      )}
     </ScreenshotLayout>
   );
 }
@@ -96,7 +122,7 @@ function AppScreenPlaceholder({
       <div style={{ fontSize: 48, fontWeight: 700 }}>{appName}</div>
       <div style={{ fontSize: 32, opacity: 0.5 }}>Screen: {screenId}</div>
       <div style={{ fontSize: 24, opacity: 0.3 }}>
-        Replace with actual app screen component
+        Component not found in SCREEN_MAP
       </div>
     </div>
   );
