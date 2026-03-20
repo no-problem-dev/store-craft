@@ -1,0 +1,20 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "store-craft",
+  "version": "1.0.0",
+  "description": "App Store アセット（スクリーンショット・アイコン）のコードベース自動生成プラットフォーム。Next.js エンジンで ASO 最適化された高品質 PNG を出力。",
+  "owner": {
+    "name": "no-problem-dev",
+    "email": "info@no-problem-net.com"
+  },
+  "plugins": [
+    {
+      "name": "store-assets",
+      "description": "App Store スクリーンショット・アイコンの自動生成。アプリ分析→ASO 設計→PNG レンダリング→fastlane deliver の一気通貫パイプライン。",
+      "version": "1.0.0",
+      "source": "./plugins/store-assets",
+      "category": "app-store",
+      "tags": ["app-store", "screenshot", "icon", "aso", "fastlane", "marketing"]
+    }
+  ]
+}

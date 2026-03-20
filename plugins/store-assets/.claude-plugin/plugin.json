@@ -1,0 +1,15 @@
+{
+  "name": "store-assets",
+  "version": "1.0.0",
+  "description": "App Store スクリーンショット・アイコンの自動生成パイプライン。Next.js レンダリングエンジンで任意の iOS/macOS アプリのストア用アセットをコードベースで生成する。",
+  "author": {
+    "name": "no-problem-dev",
+    "email": "info@no-problem-net.com"
+  },
+  "keywords": ["app-store", "screenshot", "icon", "aso", "marketing", "fastlane", "next.js"],
+  "skills": "./skills/",
+  "agents": [
+    "./agents/screenshot-designer.md",
+    "./agents/aso-advisor.md"
+  ]
+}
