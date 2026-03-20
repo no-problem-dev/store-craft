@@ -10,6 +10,8 @@
   "skills": "./skills/",
   "agents": [
     "./agents/screenshot-designer.md",
-    "./agents/aso-advisor.md"
+    "./agents/aso-advisor.md",
+    "./agents/aso-evaluator.md",
+    "./agents/metadata-writer.md"
   ]
 }
